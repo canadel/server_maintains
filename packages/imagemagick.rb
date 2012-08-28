@@ -1,3 +1,4 @@
+
 package :imagemagick do
   description 'ImageMagick image convertion library'
 

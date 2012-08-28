@@ -1,3 +1,4 @@
+
 package :sudo do
   description "Install sudo in case if it not installed yet"
   apt 'sudo'
