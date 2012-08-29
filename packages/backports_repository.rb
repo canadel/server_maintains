@@ -7,7 +7,7 @@ package :backports_repository do
 deb http://backports.debian.org/debian-backports squeeze-backports   main
 ]
   push_text repo, apt_list, :sudo => true do
-    pre :install, 'sudo apt-get update'
+    post :install, 'sudo apt-get update'
   end
 
   verify do

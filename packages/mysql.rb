@@ -32,7 +32,16 @@ package :mysql_conf do
 end
 
 package :mysql_db_user do
+  description "Create database and user"
 
+  cmd = <<CMD
+mysql -e "CREATE DATABASE #{DB}; GRANT ALL PRIVILEGES ON #{DB}.* TO #{DB_USER}@localhost IDENTIFIED BY '#{DB_PWD}'; FLUSH PRIVILEGES;" -u root -p #{DB_ROOT_PWD}
+CMD
+  runner cmd
+
+  verify do
+
+  end
 end
 
 package :asyncio_innodb do

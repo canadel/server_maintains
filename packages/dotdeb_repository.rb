@@ -8,8 +8,8 @@ deb http://packages.dotdeb.org squeeze all
 deb-src http://packages.dotdeb.org squeeze all
 ]
   push_text dotweb_repo, apt_list, :sudo => true do
-    pre :install, 'wget -q http://www.dotdeb.org/dotdeb.gpg -O -| sudo apt-key add -'
-    pre :install, 'sudo apt-get update'
+    pre  :install, 'wget -q http://www.dotdeb.org/dotdeb.gpg -O -| sudo apt-key add -'
+    post :install, 'sudo apt-get update'
   end
 
   verify do

@@ -24,17 +24,17 @@ Dir.glob(PACKAGES_DIR + '/*.rb').each { |f| require f }
 IP = '37.59.247.208'
 
 policy :setup, :roles => :app do
-  # requires :sudo
-  # requires :essentials
-  # requires :locales
-  # requires :htop
-  # requires :logrotate
-  # requires :scm
-  # requires :imagemagick
-  # requires :ruby193
+  requires :sudo
+  requires :essentials
+  requires :locales
+  requires :htop
+  requires :logrotate
+  requires :scm
+  requires :imagemagick
+  requires :ruby193
   requires :mysql
-  # requires :deploy_user
-  # requires :nginx
+  requires :deploy_user
+  requires :nginx
 end
 
 deployment do
