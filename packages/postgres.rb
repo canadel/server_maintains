@@ -1,5 +1,6 @@
+
 package :postgres_configuration do
-  description ' Configure PostgreSQL database'
+  description 'Configure PostgreSQL database'
   requires :postgresql
 
   PG_CONFIG = File.join(::FIXTURES_DIR, "pg_hba.conf")
@@ -8,14 +9,6 @@ package :postgres_configuration do
   runner "/etc/init.d/postgresql restart"
 
 end
-
-# http://stackoverflow.com/questions/2748607/how-to-thoroughly-purge-and-reinstall-postgresql-on-ubuntu
-# apt-get --purge remove postgresql\*
-# rm -r /etc/postgresql/
-# rm -r /etc/postgresql-common/
-# rm -r /var/lib/postgresql/
-# userdel -r postgres
-# groupdel postgres
 
 package :postgresql do
   description 'PostgreSQL database'
@@ -31,6 +24,10 @@ end
 
 package :pg_user do
 
+
+  verify do
+  # add verification that user/db yet exists
+  end
 end
 
 

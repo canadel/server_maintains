@@ -1,10 +1,15 @@
 #
 # run as sprinkle -v -c -s ebike.rb
-############################################################
+
 ::BASE_DIR     = File.expand_path(File.dirname(__FILE__))
 ::PACKAGES_DIR = File.join(BASE_DIR, 'packages')
 ::FIXTURES_DIR = File.join(BASE_DIR, 'fixtures')
 ::KEYS_DIR     = File.join(BASE_DIR, 'keys')
+
+############################################################
+# Configurations for current server setup
+#
+::IP           = '37.59.247.208'
 
 ::DEPLOY_USER  = "deploy"
 ::DEPLOY_GROUP = "deploy"
@@ -13,15 +18,23 @@
 ::DB_ROOT_PWD  = "F64cPwmYRTmpAj"
 ::DB_USER      = "ebike"
 ::DB_PWD       = "Pod434ooASw882"
+############################################################
 
 Dir.glob(PACKAGES_DIR + '/*.rb').each { |f| require f }
 
-############################################################
+# In case of mistakes, just run:
 # sudo apt-get clean
 # sudo apt-get autoclean
 # sudo apt-get autoremove
+#
+# http://stackoverflow.com/questions/2748607/how-to-thoroughly-purge-and-reinstall-postgresql-on-ubuntu
+# apt-get --purge remove postgresql\*
+# rm -r /etc/postgresql/
+# rm -r /etc/postgresql-common/
+# rm -r /var/lib/postgresql/
+# userdel -r postgres
+# groupdel postgres
 
-IP = '37.59.247.208'
 
 policy :setup, :roles => :app do
   requires :sudo

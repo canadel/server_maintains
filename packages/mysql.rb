@@ -40,7 +40,7 @@ CMD
   runner cmd
 
   verify do
-
+  # add verification that user/db yet exists
   end
 end
 
