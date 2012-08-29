@@ -1,4 +1,4 @@
-YURY_KEY = File.open(File.join(::KEYS_DIR, 'yury.id_rsa.pub'), 'r').read
+::DEPLOY_KEY = File.open(File.join(::KEYS_DIR, 'deploy.id_rsa.pub'), 'r').read rescue "Add 'keys/deploy.id_rsa.pub' with public key(s)"
 
 package :deploy_user do
   requires  :add_deploy_user,
@@ -35,7 +35,7 @@ end
 # generate keys to use with your "deploy" user(s), see ssh.rb for an example
 package :deploy_autorized_keys do
   config_file = "/home/#{::DEPLOY_USER}/.ssh/authorized_keys"
-  config_text = YURY_KEY.lstrip
+  config_text = DEPLOY_KEY.lstrip
 
   push_text config_text, config_file
   runner "chown -R #{::DEPLOY_USER}:#{::DEPLOY_GROUP} /home/#{::DEPLOY_USER}/.ssh/"
