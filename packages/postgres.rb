@@ -17,7 +17,7 @@ end
 # userdel -r postgres
 # groupdel postgres
 
-package :postgresql, :provides => :database do
+package :postgresql do
   description 'PostgreSQL database'
   requires :pgapt_repository
 
@@ -29,22 +29,13 @@ package :postgresql, :provides => :database do
   end
 end
 
-package :mysql, :provides => :database do
-  description 'MySQL Database'
-  requires :dotweb_repository
-  apt %w( mysql-server mysql-client libmysqlclient-dev )
+package :pg_user do
 
-  verify do
-    has_executable 'mysql'
-  end
 end
 
-package :sqlite3, :provides => :database do
-  description "SQLite3 Database"
-  apt "libsqlite3-dev"
 
-  verify do
-    has_executable 'sqlite3'
-  end
-
+package :pg_install do
+  requires :postgresql
+  requires :postgres_configuration
+  requires :pg_user
 end

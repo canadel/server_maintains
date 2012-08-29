@@ -1,5 +1,6 @@
-package :dotweb_repository do
-  description 'Dotweb packages repository'
+
+package :dotdeb_repository do
+  description 'Dotdeb packages repository'
 
   apt_list = '/etc/apt/sources.list'
   dotweb_repo = %q[
