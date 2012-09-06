@@ -8,7 +8,11 @@
 ::FIXTURES_DIR = File.join(BASE_DIR, 'fixtures')
 ::KEYS_DIR     = File.join(BASE_DIR, 'keys')
 
+# Specific project dirs
+::PROJECT_PACKAGES_DIR = File.join(BASE_DIR, 'projects', PROJECT_NAME)
 ::PROJECT_FIXTURES_DIR = File.join(FIXTURES_DIR, 'projects', PROJECT_NAME)
+::PROJECT_DEPLOY_PATH = File.join("/var/www/", PROJECT_NAME)
+
 ############################################################
 # Configurations for current server setup
 #
@@ -23,7 +27,11 @@
 ::DB_PWD       = "Pod434ooASw882"
 ############################################################
 
+# Load common packages
 Dir.glob(PACKAGES_DIR + '/**/*.rb').each { |f| require f }
+
+# Load specific to project packages
+Dir.glob(PROJECT_PACKAGES_DIR + '/**/*.rb').each { |f| require f }
 
 # In case of mistakes, just run:
 # sudo apt-get clean
@@ -40,6 +48,7 @@ Dir.glob(PACKAGES_DIR + '/**/*.rb').each { |f| require f }
 
 
 policy :setup, :roles => :app do
+  # Generic packages
   requires :sudo
   requires :essentials
   requires :locales
@@ -51,8 +60,12 @@ policy :setup, :roles => :app do
   requires :mysql
   requires :deploy_user
   requires :nginx
-
   requires :monit
+
+  # Project specific packages
+  requires :setup_monit
+  requires :setup_unicorn
+  requires :setup_db
 
 end
 

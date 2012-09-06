@@ -1,0 +1,10 @@
+# sprinkled: monit.rc.apache2 v1
+
+check process apache2 with pidfile /var/run/apache2.pid
+group server
+start program = "/etc/init.d/apache2 start"
+stop program = "/etc/init.d/apache2 stop"
+if cpu > 80% for 5 cycles then restart
+if totalmem > 256.0 MB for 5 cycles then restart
+if children > 250 then restart
+if 5 restarts within 5 cycles then timeout

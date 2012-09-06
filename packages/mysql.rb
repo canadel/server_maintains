@@ -31,19 +31,6 @@ package :mysql_conf do
   end
 end
 
-package :mysql_db_user do
-  description "Create database and user"
-
-  cmd = <<CMD
-mysql -e "CREATE DATABASE #{DB}; GRANT ALL PRIVILEGES ON #{DB}.* TO #{DB_USER}@localhost IDENTIFIED BY '#{DB_PWD}'; FLUSH PRIVILEGES;" -u root -p #{DB_ROOT_PWD}
-CMD
-  runner cmd
-
-  verify do
-  # add verification that user/db yet exists
-  end
-end
-
 package :asyncio_innodb do
   description "AsyncIO for InnoDB"
   apt %w( libaio-dev libaio1 )
@@ -57,5 +44,4 @@ package :mysql do
   requires :mysql_prerequisites
   requires :mysql_apt
   requires :mysql_conf
-  requires :mysql_db_user
 end
