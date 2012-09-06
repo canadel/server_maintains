@@ -60,7 +60,11 @@ policy :setup, :roles => :app do
   requires :mysql
   requires :deploy_user
   requires :nginx
+
+  # monitoring
   requires :monit
+  requires :monit_ssh
+  requires :monit_nginx
 
   # Project specific packages
   requires :setup_monit

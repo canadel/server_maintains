@@ -1,3 +1,6 @@
+# Mysql creation
+
+
 package :setup_db do
   description "Create database and user"
   requires :add_db
