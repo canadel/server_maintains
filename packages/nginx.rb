@@ -1,7 +1,7 @@
 
 package :nginx do
   description "Vanilla nginx install with modules"
-  requires :dotweb_repository, :pcre, :nginx_helper_bins
+  requires :dotdeb_repository, :pcre, :nginx_helper_bins
 
   apt 'nginx' do
     pre :install, 'apt-get update'
