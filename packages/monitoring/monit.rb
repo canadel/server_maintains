@@ -16,7 +16,7 @@ package :monit_nginx do
   description 'Monitoring nginx'
   requires :monit, :nginx
 
-  config = File.join(FIXTURES_DIR, 'monitoring', 'monit.rc.nginx')
+  config = File.join(::FIXTURES_DIR, 'monitoring', 'monit.rc.nginx')
   target = "/etc/monit/conf.d/monit.rc.nginx"
   transfer config, target
 
@@ -30,7 +30,7 @@ package :monit_ssh do
   description 'Monitoring sshd daemon'
   requires :monit
 
-  config = File.join(FIXTURES_DIR, 'monitoring', 'monit.rc.ssh')
+  config = File.join(::FIXTURES_DIR, 'monitoring', 'monit.rc.ssh')
   target = "/etc/monit/conf.d/monit.rc.ssh"
   transfer config, target
 

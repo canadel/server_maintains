@@ -1,7 +1,7 @@
 package :setup_monit do
   description "Setup monit project config"
 
-  config = File.join(PROJECT_FIXTURES_DIR, 'monit.rc.project')
+  config = File.join(::PROJECT_FIXTURES_DIR, 'monit.rc.project')
   target = "/etc/monit/conf.d/monit.rc.#{PROJECT_NAME}"
 
   project_name = PROJECT_NAME

@@ -1,7 +1,7 @@
 package :setup_unicorn do
   description "Setup unicorn runner service"
 
-  unicorn_runner = File.join(PROJECT_FIXTURES_DIR, 'unicorn')
+  unicorn_runner = File.join(::PROJECT_FIXTURES_DIR, 'unicorn')
   target_service = "/etc/init.d/unicorn_#{PROJECT_NAME}"
 
   project_name = PROJECT_NAME
