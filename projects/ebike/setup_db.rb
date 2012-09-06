@@ -10,9 +10,12 @@ end
 package :add_db do
   description "Create db"
 
-  cmd = <<CMD
+  noop do
+    cmd = <<CMD
 mysql -e "CREATE DATABASE IF NOT EXISTS #{DB};" -uroot -p#{DB_ROOT_PWD}
 CMD
+    runner cmd
+  end
 end
 
 
@@ -21,9 +24,12 @@ end
 package :add_db_user do
   description "Add DB user"
 
-  cmd = <<CMD
+  noop do
+    cmd = <<CMD
 mysql -e "GRANT ALL PRIVILEGES ON #{DB}.* TO #{DB_USER}@localhost IDENTIFIED BY '#{DB_PWD}'; FLUSH PRIVILEGES;" -uroot -p#{DB_ROOT_PWD}
 CMD
+    runner cmd
+  end
 
   verify do
     cmd = <<CMD
