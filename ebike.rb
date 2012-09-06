@@ -65,6 +65,7 @@ policy :setup, :roles => :app do
   requires :monit
   requires :monit_ssh
   requires :monit_nginx
+  requires :monit_mysql
 
   # Project specific packages
   requires :setup_monit

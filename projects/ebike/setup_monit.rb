@@ -8,6 +8,7 @@ package :setup_monit do
   project_user = DEPLOY_USER
   project_deploy_path = PROJECT_DEPLOY_PATH
   transfer config, target, render: true do
+    post :install, "/etc/init.d/monit restart"
   end
 
   verify do
