@@ -1,11 +1,14 @@
 #
 # run as sprinkle -v -c -s ebike.rb
 
+::PROJECT_NAME = 'ebike'
+
 ::BASE_DIR     = File.expand_path(File.dirname(__FILE__))
 ::PACKAGES_DIR = File.join(BASE_DIR, 'packages')
 ::FIXTURES_DIR = File.join(BASE_DIR, 'fixtures')
 ::KEYS_DIR     = File.join(BASE_DIR, 'keys')
 
+::PROJECT_FIXTURES_DIR = File.join(FIXTURES_DIR, 'projects', PROJECT_NAME)
 ############################################################
 # Configurations for current server setup
 #
@@ -16,11 +19,11 @@
 
 ::DB           = "ebike_production"
 ::DB_ROOT_PWD  = "F64cPwmYRTmpAj"
-::DB_USER      = "ebike"
+::DB_USER      =  PROJECT_NAME
 ::DB_PWD       = "Pod434ooASw882"
 ############################################################
 
-Dir.glob(PACKAGES_DIR + '/*.rb').each { |f| require f }
+Dir.glob(PACKAGES_DIR + '/**/*.rb').each { |f| require f }
 
 # In case of mistakes, just run:
 # sudo apt-get clean
@@ -48,6 +51,9 @@ policy :setup, :roles => :app do
   requires :mysql
   requires :deploy_user
   requires :nginx
+
+  requires :monit
+
 end
 
 deployment do

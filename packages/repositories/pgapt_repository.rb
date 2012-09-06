@@ -4,7 +4,7 @@ package :pgapt_repository do
 
   apt_list = '/etc/apt/sources.list'
   pgapt_repo = %q[
-deb http://pgapt.debian.net/ squeeze-pgapt main
+deb http://pgapt.debian.net/ squeeze-pgdg main 9.2
 ]
   push_text pgapt_repo, apt_list, :sudo => true do
     pre :install, 'wget -q http://pgapt.debian.net/ACCC4CF8.asc -O -| apt-key add -'
@@ -12,6 +12,6 @@ deb http://pgapt.debian.net/ squeeze-pgapt main
   end
 
   verify do
-    file_contains "/etc/apt/sources.list", "pgapt"
+    file_contains "/etc/apt/sources.list", "pgdg"
   end
 end
