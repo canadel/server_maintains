@@ -1,13 +1,16 @@
 
 package :monit do
   description 'Monit - Provides process monitoring'
-  apt 'monit'
+  apt 'monit' do
+    post :install, "echo 'startup=1' > /etc/default/monit", "monit"
+  end
+  config = File.join(::FIXTURES_DIR, 'monitoring', 'monitrc')
+  transfer config, '/etc/monit/monitrc'
 
   verify do
     has_executable 'monit'
 
     has_file '/etc/init.d/monit'
-    has_file '/etc/logrotate.d/monit'
   end
 end
 

@@ -1,22 +1,23 @@
 #
 # run as sprinkle -v -c -s ebike.rb
 
-::PROJECT_NAME = 'ebike'
+::PROJECT_NAME         = 'ebike'
 
-::BASE_DIR     = File.expand_path(File.dirname(__FILE__))
-::PACKAGES_DIR = File.join(BASE_DIR, 'packages')
-::FIXTURES_DIR = File.join(BASE_DIR, 'fixtures')
-::KEYS_DIR     = File.join(BASE_DIR, 'keys')
+::BASE_DIR             = File.expand_path(File.dirname(__FILE__))
+::PACKAGES_DIR         = File.join(BASE_DIR, 'packages')
+::FIXTURES_DIR         = File.join(BASE_DIR, 'fixtures')
+::KEYS_DIR             = File.join(BASE_DIR, 'keys')
 
 # Specific project dirs
 ::PROJECT_PACKAGES_DIR = File.join(BASE_DIR, 'projects', PROJECT_NAME)
 ::PROJECT_FIXTURES_DIR = File.join(FIXTURES_DIR, 'projects', PROJECT_NAME)
-::PROJECT_DEPLOY_PATH = File.join("/var/www/", PROJECT_NAME)
+::PROJECT_DEPLOY_PATH  = File.join("/var/www/", PROJECT_NAME)
 
 ############################################################
 # Configurations for current server setup
 #
 ::IP           = '37.59.247.208'
+::DOMAIN       = 'ebike.de'
 
 ::DEPLOY_USER  = "deploy"
 ::DEPLOY_GROUP = "deploy"
@@ -48,7 +49,7 @@ Dir.glob(PROJECT_PACKAGES_DIR + '/**/*.rb').each { |f| require f }
 
 
 policy :setup, :roles => :app do
-  # Generic packages
+## Generic packages
   requires :sudo
   requires :essentials
   requires :locales
@@ -61,16 +62,17 @@ policy :setup, :roles => :app do
   requires :deploy_user
   requires :nginx
 
-  # monitoring
+## monitoring
   requires :monit
   requires :monit_ssh
   requires :monit_nginx
   requires :monit_mysql
 
-  # Project specific packages
+## Project specific packages
   requires :setup_monit
   requires :setup_unicorn
   requires :setup_db
+  requires :setup_nginx
 
 end
 

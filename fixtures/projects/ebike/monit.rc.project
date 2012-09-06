@@ -1,6 +1,6 @@
-check process unicorn_<%=project_name%> with pidfile "<%=project_deploy_path%>/current/tmp/pids/unicorn.pid"
-  start program = "/etc/init.d/unicorn_<%=project_name%> start"
-  stop program = "/etc/init.d/unicorn_<%=project_name%> stop"
+check process unicorn_<%=project_name%> with pidfile "<%= ::PROJECT_DEPLOY_PATH %>/current/tmp/pids/unicorn.pid"
+  start program = "/etc/init.d/unicorn_<%= ::PROJECT_NAME %> start"
+  stop program = "/etc/init.d/unicorn_<%= ::PROJECT_NAME %> stop"
   if mem is greater than 256.0 MB for 1 cycles then restart
   if cpu is greater than 25% for 2 cycles then alert
   if cpu is greater than 30% for 1 cycles then restart

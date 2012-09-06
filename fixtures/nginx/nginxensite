@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# nginxdissite
+# nginxensite
 
 if [ -z $1 ]; then
         echo
@@ -8,17 +8,18 @@ if [ -z $1 ]; then
         exit 0
 fi
 
-NGINX_CONF=/etc/nginx/conf
+NGINX_CONF=/etc/nginx
 CONF_FILE="$1"
 AVAILABLE_PATH="$NGINX_CONF/sites-available/$CONF_FILE"
 ENABLED_PATH="$NGINX_CONF/sites-enabled/$CONF_FILE"
 
 echo
-if [ -e $ENABLED_PATH ]; then
-        rm $ENABLED_PATH
+if [ -e $AVAILABLE_PATH ]; then
+        ln -s $AVAILABLE_PATH $ENABLED_PATH
 
-        echo "$1 has been disabled"
+        echo "$1 has been enabled"
         echo "run /etc/init.d/nginx reload to apply the changes"
 else
-        echo "$ENABLED_PATH does not exist, ignoring"
+        echo "$AVAILABLE_PATH does not exist"
+        exit 1
 fi

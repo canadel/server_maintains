@@ -1,5 +1,8 @@
 # sprinkled: monit.rc.memcached v1
 
 check process memcached with pidfile /var/run/memcached.pid
+  start program = "/etc/init.d/memcached start"
+  stop program = "/etc/init.d/memcached stop"
   if failed host 127.0.0.1 port 11211 for 2 cycles then restart
   if totalmemory is greater than 20% for 2 cycles then alert
+  group cache
