@@ -37,7 +37,7 @@ fi
 #UNICORN_CMD="cd $APP_ROOT && RAILS_ENV=$RAILS_ENV TMPDIR=$APP_TMPDIR bundle exec unicorn -D -E $RAILS_ENV -c $APP_ROOT/config/unicorn.rb"
 
 # TODO: Commend this line and use the one above when switching ebike to proper bundle
-UNICORN_CMD="cd $APP_ROOT && RAILS_ENV=$RAILS_ENV TMPDIR=$APP_TMPDIR unicorn -D -E $RAILS_ENV -c $APP_ROOT/config/unicorn.rb"
+UNICORN_CMD="cd $APP_ROOT && RAILS_ENV=$RAILS_ENV TMPDIR=$APP_TMPDIR bundle exec unicorn -D -E $RAILS_ENV -c $APP_ROOT/config/unicorn.rb"
 
 old_pid="$PID.oldbin"
 
