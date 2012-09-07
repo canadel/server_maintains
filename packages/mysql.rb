@@ -22,12 +22,13 @@ package :mysql_apt do
 end
 
 package :mysql_conf do
-  MY_CONFIG = File.join(::FIXTURES_DIR, "mysql_utf8.cnf")
-  transfer MY_CONFIG, '/etc/mysql/conf.d/utf8.cnf', sudo: true
+  MY_CONFIG = File.join(::FIXTURES_DIR, "my.cnf")
+  transfer MY_CONFIG, '/etc/mysql/my.cnf', sudo: true
   runner "/etc/init.d/mysql restart"
 
   verify do
-    has_file '/etc/mysql/conf.d/utf8.cnf'
+    has_file '/etc/mysql/my.cnf'
+    file_contains "/etc/mysql/my.cnf", "utf8"
   end
 end
 
