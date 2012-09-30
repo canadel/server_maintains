@@ -3,7 +3,7 @@ package :redis do
   description "Redis key-value cache"
   requires :dotweb_repository
 
-  apt "redis" do
+  apt "redis-server" do
     pre :install, "apt-get update"
   end
 
